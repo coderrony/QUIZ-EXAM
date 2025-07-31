@@ -1,36 +1,60 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Quiz Exam – A Quiz Generation Platform for Recruiters
 
-## Getting Started
+## Overview
+Quiz Exam is a full-featured quiz creation and evaluation system built for internal interviews. It allows admins to create quizzes based on different positions and send tests to candidates via email. The platform supports both automatic and manual grading.
 
-First, run the development server:
+## Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+### 🛠️ Admin Panel
+- Create job positions (e.g., *Frontend Intern*, *Junior Node Developer*)
+- Build quizzes for each position with one or more groups:
+  - Each group can include:
+    - Multiple Choice Questions (MCQ) – with single/multiple correct answers
+    - Open-ended text-based questions
+- Mark correct answers for MCQs
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 🧪 Test Creation
+- Create a test based on an existing quiz
+- Customize:
+  - Test name and date
+  - Select questions from quiz groups
+  - Set test duration (e.g., 30 minutes)
+- Timer starts when candidate begins test
+- Auto-submit when timer expires
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### 👤 Candidate Assignment
+- Assign tests to candidates by name and email
+- Auto-generate or manually assign login credentials
+- Resend credentials via email
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### 🧑‍💻 Test Taker Interface
+- Secure login with provided credentials
+- View assigned tests
+- Answer questions and submit within time
+- Auto-submission when time ends
 
-## Learn More
+### 📝 Result Evaluation
+- Automatic scoring for MCQs
+- Manual review for open-ended answers
+  - Accept / Reject / Assign partial marks
+- View detailed test result reports per candidate
 
-To learn more about Next.js, take a look at the following resources:
+## 🛠 Tech Stack
+- **Next.js** – App Router-based React framework with support for SSR and SSG
+- **Prisma** – Type-safe ORM for interacting with the database
+- **PostgreSQL** – Relational database (integrated via Prisma)
+- **NextAuth.js** – Authentication library supporting credentials and OAuth providers
+- **Zod** – Schema-based validation for forms and APIs
+- **React Hook Form** – Performant form handling and validation
+- **Tailwind CSS** – Utility-first CSS framework for building modern UIs
+- **shadcn/ui** – Beautifully designed, accessible components built with Tailwind CSS
+- **Resend** – Email sending service for delivering test credentials and notifications
+  
+## 🌐 Live Demo
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+You can explore the live project here:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+🔗 [https://ronydas.dev](https://ronydas.dev)
 
-## Deploy on Vercel
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
