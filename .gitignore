@@ -3,6 +3,7 @@
 resources
 save.txt
 save2.txt
+package-lock.json
 
 # dependencies
 /node_modules
