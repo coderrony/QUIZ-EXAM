@@ -54,7 +54,7 @@ Quiz Exam is a full-featured quiz creation and evaluation system built for inter
 
 You can explore the live project here:
 
-🔗 [https://quiz-exam-rpfl.vercel.app](https://quiz-exam-rpfl.vercel.app)
+🔗 [https://quiz-exam-iota.vercel.app](https://quiz-exam-iota.vercel.app)
 
 
 
