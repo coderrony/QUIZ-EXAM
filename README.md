@@ -1,3 +1,6 @@
+> 🚧 **Work in Progress:** This application is still being developed. I’m actively working on it and regularly adding new features and improvements.
+
+
 # Quiz Exam – A Quiz Generation Platform for Recruiters
 
 ## Overview
@@ -56,5 +59,10 @@ You can explore the live project here:
 
 🔗 [https://quiz-exam-iota.vercel.app](https://quiz-exam-iota.vercel.app)
 
+## 🗂️ Application Architecture
+
+Here’s a visual diagram of the application's structure:
+
+![Quiz Exam Architecture](https://res.cloudinary.com/drtqzfefz/image/upload/v1754046775/quiz_exam_diagram___Mermaid_Chart_jwqt8u.png)
 
 
