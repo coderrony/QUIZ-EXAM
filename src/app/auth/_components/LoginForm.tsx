@@ -19,8 +19,6 @@ import {
 
 import { Button } from '@/components/ui/button';
 
-// import { login } from "@/actions/auth/login";
-
 import FormError from '@/components/FormError';
 import FormSuccess from '@/components/FormSuccess';
 import { LoginSchema } from '@/schemas/auth';
@@ -57,13 +55,9 @@ export const LoginForm = () => {
     setError('');
     setSuccess('');
 
-    console.log('values ', values);
-
     startTransition(() => {
       login(values, callbackUrl)
         .then(data => {
-          console.log('data-> ', data);
-
           if (data?.error) {
             // form.reset();
             setError(data.error);

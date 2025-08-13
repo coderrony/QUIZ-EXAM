@@ -15,9 +15,7 @@ const Social: FC<SocialProps> = () => {
 
   const searchParams = useSearchParams();
   const callbackUrl = searchParams.get("callbackUrl");
-  // console.log("callbackUrl ",callbackUrl);
   
-
   const onClick = (provider:string) => {
     signIn(provider, {
       callbackUrl: callbackUrl || DEFAULT_LOGIN_REDIRECT,

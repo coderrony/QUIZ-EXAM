@@ -21,8 +21,7 @@ type TestDetailsType = {
 async function TestDetails({ params }: TestDetailsType) {
   const { id: testId } = await params;
   const myTest = await getTestByID(testId);
-  // console.log("myTest ",myTest);
-
+ 
   if (!myTest) {
     redirect('/dashboard/tests');
   }
@@ -42,14 +41,9 @@ async function TestDetails({ params }: TestDetailsType) {
       </Breadcrumb>
 
       <div className='flex justify-between items-center'>
-        <h1 className='text-2xl font-bold'>{myTest.name}</h1>
+        <h1 className='font-bold'>{myTest.name}</h1>
         <div>
-          {/* <Button className='mr-5' asChild>
-            <Link href={`/admin/tests/${myTest.id}/assign`}>Assign</Link>
-          </Button> */}
-          {/* <Button asChild>
-            <Link href={`/admin/tests/${myTest.id}/groups/new`}>Add Group</Link>
-          </Button> */}
+    
           <GroupForm testId={testId} />
         </div>
       </div>
@@ -57,7 +51,7 @@ async function TestDetails({ params }: TestDetailsType) {
       <p className='text-sm'>Date: {new Date(myTest.date).toLocaleString()}</p>
       <p className='text-sm'>Duration: {myTest.durationMin} minutes</p>
 
-      <h2 className='text-xl font-semibold mt-6'>Groups</h2>
+      <h2 className='font-semibold mt-6'>Groups</h2>
       <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
         {myTest.groups.map(group => (
           <Card key={group.id}>

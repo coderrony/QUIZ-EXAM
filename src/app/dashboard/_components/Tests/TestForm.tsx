@@ -25,13 +25,12 @@ interface TestFormProps {
 }
 
 const TestForm: FC<TestFormProps> = () => {
-  const session = useMySession() as MySessionType
+  const session = useMySession() as MySessionType;
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
   const [isPending, startTransition] = useTransition();
 
-  //  console.log('Navbar mySession ', session);
-
+ 
   const form = useForm<NewTestSchemaType>({
     resolver: zodResolver(NewTestSchema),
     defaultValues: {
@@ -42,18 +41,25 @@ const TestForm: FC<TestFormProps> = () => {
   });
 
   const onSubmit = (value: NewTestSchemaType) => {
-    console.log(value);
+
     startTransition(() => {
-      newTest(value,session.user.id).then(data => {
-        if (data.error) {
-          setError(data.error);
-          setSuccess('');
-        } else if (data.success) {
-          setSuccess(data.success);
-          form.reset()
-          setError('');
-        }
-      });
+      newTest(value, session.user.id)
+        .then(data => {
+          if (data.error) {
+            setError(data.error);
+            setSuccess('');
+          } else if (data.success) {
+            setSuccess(data.success);
+            form.reset();
+            setError('');
+          }
+        })
+        .finally(() => {
+          setTimeout(() => {
+            setSuccess('');
+            setError('');
+          }, 3000);
+        });
     });
   };
 

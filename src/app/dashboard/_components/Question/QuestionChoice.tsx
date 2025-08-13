@@ -51,7 +51,7 @@ const QuestionChoice: FC<QuestionChoiceProps> = ({
   });
 
   const onSubmit = (value: NewChoiceSchemaType) => {
-    console.log(value);
+
     if (selectedIndex.includes(Number(value.index))) {
       form.setError('index', {
         type: 'manual',

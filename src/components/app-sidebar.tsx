@@ -5,6 +5,7 @@ import {
   IconChartBar,
   IconDashboard,
   IconInnerShadowTop,
+  IconPencilPlus,
   // IconListDetails,
   IconReport,
   IconUsers,
@@ -47,6 +48,11 @@ const data = {
       title: 'Tests',
       url: '/dashboard/tests',
       icon: IconChartBar,
+    },
+    {
+      title: 'Setup Quiz',
+      url: '/dashboard/setup-quiz',
+      icon: IconPencilPlus,
     },
     {
       title: 'Candidates',

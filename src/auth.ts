@@ -12,8 +12,6 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
   trustHost: true,
   events: {
     async linkAccount({ user }) {
-      console.log("linkAccount user ",user);
-      
       await prisma.user.update({
         where: { id: user.id },
         data: { emailVerified: new Date() },
@@ -22,7 +20,6 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
   },
   callbacks: {
     async signIn({ user, account }) {
- 
       // Allow OAuth without email verification
       if (account?.provider !== 'credentials') return true;
 
@@ -31,7 +28,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
       }
 
       const existingUser = await getUserById(user.id);
-   
+
       // Prevent sign in without email verification
       if (!existingUser?.emailVerified) return false;
 
@@ -39,7 +36,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
     },
     async jwt({ token }) {
       // console.log("token ",token);
-      
+
       if (!token.sub) return token;
 
       const existingUser = await getUserById(token.sub);
@@ -57,7 +54,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
     async session({ session, token }) {
       // console.log("session session",session);
       // console.log("session token",token);
-      
+
       if (token.sub && session.user) {
         session.user.id = token.sub;
       }

@@ -39,13 +39,14 @@ const QuestionForm: FC<QuestionFormProps> = ({ groupId }) => {
     resolver: zodResolver(NewQuestionSchema),
     defaultValues: {
       text: '',
-      type: undefined,
+      type: 'MCQ',
       score: '',
     },
   });
 
   const onSubmit = (value: NewQuestionSchemaType) => {
-    console.log(value);
+
+  
     // handle submit logic
     startTransition(() => {
       newQuestion(value, groupId)

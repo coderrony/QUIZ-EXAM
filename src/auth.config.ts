@@ -1,4 +1,4 @@
-export const runtime = "nodejs";
+export const runtime = 'nodejs';
 
 import Google from 'next-auth/providers/google';
 import GitHub from 'next-auth/providers/github';
@@ -6,8 +6,6 @@ import Credentials from 'next-auth/providers/credentials';
 import { LoginSchema } from './schemas/auth';
 import { getUserByEmail } from './data-query/user';
 import bcrypt from 'bcryptjs';
-
-
 
 const authConfig = {
   providers: [
@@ -24,7 +22,6 @@ const authConfig = {
           if (!user || !user.password) return null;
 
           const passwordsMatch = await bcrypt.compare(password, user.password);
-          // console.log('passwordsMatch ', passwordsMatch);
 
           if (passwordsMatch) return user;
         }

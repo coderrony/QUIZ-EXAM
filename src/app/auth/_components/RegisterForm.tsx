@@ -47,7 +47,7 @@ const RegisterForm: FC<RegisterFormProps> = () => {
     setError('');
     setSuccess('');
 
-    console.log('values ', values);
+  
 
     startTransition(() => {
       register(values).then((data: { error?: string; success?: string }) => {
@@ -59,7 +59,12 @@ const RegisterForm: FC<RegisterFormProps> = () => {
         form.reset()
         setError('');
       }
-      });
+      }).finally(() => {
+          setTimeout(() => {
+            setSuccess('');
+            setError('');
+          }, 4000);
+        });
     });
   };
 

@@ -36,7 +36,7 @@ export const newQuestion = async (
     return { success: 'New Question added' };
   } catch (error) {
     if (error instanceof Error) {
-      return { error: error.message };
+    return { error: 'Something is wrong!' };
     }
     return { error: 'Something is wrong!' };
   }
@@ -69,7 +69,7 @@ export const newChoice = async (
     return { success: 'New Choice added' };
   } catch (error) {
     if (error instanceof Error) {
-      return { error: error.message };
+      return { error: 'Something is wrong!' };
     }
     return { error: 'Something is wrong!' };
   }
@@ -95,7 +95,7 @@ export const editQuestion = async (
     return { success: 'Update Question' };
   } catch (error) {
     if (error instanceof Error) {
-      return { error: error.message };
+       return { error: 'Something is wrong!' };
     }
     return { error: 'Something is wrong!' };
   }
@@ -118,7 +118,7 @@ export const questionDelete = async (questionId: string) => {
     return { success: 'Question Deleted' };
   } catch (error) {
     if (error instanceof Error) {
-      return { error: error.message };
+       return { error: 'Something is wrong!' };
     }
     return { error: 'Something is wrong!' };
   }

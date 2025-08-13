@@ -62,7 +62,12 @@ const NewPasswordForm: FC<NewPasswordFormProps> = () => {
           form.reset();
           setError('');
         }
-      });
+      }).finally(() => {
+          setTimeout(() => {
+            setSuccess('');
+            setError('');
+          }, 3000);
+        });
     });
   };
 

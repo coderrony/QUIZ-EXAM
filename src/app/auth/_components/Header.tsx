@@ -1,4 +1,3 @@
-// import { cn } from '@/lib/utils';
 import { FC } from 'react';
 
 interface HeaderProps {

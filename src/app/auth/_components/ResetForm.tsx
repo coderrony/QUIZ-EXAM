@@ -40,7 +40,6 @@ const ResetForm: FC<ResetFormProps> = () => {
     setError('');
     setSuccess('');
 
-    console.log('values ', values);
 
     startTransition(() => {
       reset(values).then((data: { error?: string; success?: string }) => {

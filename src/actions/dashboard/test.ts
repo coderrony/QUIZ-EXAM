@@ -29,25 +29,12 @@ export const newTest = async (value: NewTestSchemaType,userId:string) => {
 
   } catch (error) {
     if (error instanceof Error) {
-      return { error: error.message };
+      return { error: 'Something is Wrong try again later' };
     }
-    return { error: String(error) };
+    return { error: 'Something is Wrong' };
   }
 };
 
-// export const getTestsByUserID = async(userId:string)=>{ 
-//   try {
-//     const tests =await prisma.test.findMany({
-//       where:{userId}
-//     })
-//     return tests
-//   } catch (error) {
-//     if (error instanceof Error) {
-//       throw new Error(error.message);
-//     }
-//     throw new Error(String(error));
-//   }
-// }
 
 export const getTestByID = async(testID:string)=>{ 
   try {

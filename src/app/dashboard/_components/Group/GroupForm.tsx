@@ -31,8 +31,6 @@ const GroupForm: FC<GroupFormProps> = ({testId}) => {
   const [success, setSuccess] = useState('');
   const [isPending, startTransition] = useTransition();
 
-  //  console.log('Navbar mySession ', session);
-
   const form = useForm<NewGroupSchemaType>({
     resolver: zodResolver(NewGroupSchema),
     defaultValues: {
@@ -41,7 +39,7 @@ const GroupForm: FC<GroupFormProps> = ({testId}) => {
   });
 
   const onSubmit = (value: NewGroupSchemaType) => {
-    console.log(value);
+   
 
     startTransition(() => {
       newGroup(value, testId).then(data => {

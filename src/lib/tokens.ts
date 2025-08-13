@@ -1,7 +1,6 @@
 'use server';
 import { v4 as uuidv4 } from 'uuid';
 
-
 import { prisma } from './prisma';
 import { getVerificationTokenByEmail } from '@/data-query/verification-token';
 import { getPasswordResetTokenByEmail } from '@/data-query/password-reset-token';
@@ -33,9 +32,6 @@ export const generateVerificationToken = async (email: string) => {
   const token = uuidv4();
 
   const expires = new Date(new Date().getTime() + 3600 * 1000); // Set expiration time to 1 hour (3600 seconds) from the current time
-
-  console.log('generateVerificationToken token ', token);
-  console.log('generateVerificationToken expires ', expires);
 
   const existingToken = await getVerificationTokenByEmail(email);
 

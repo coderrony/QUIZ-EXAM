@@ -24,58 +24,33 @@ export const newGroup = async (value: NewGroupSchemaType, testId: string) => {
     return { success: 'New Group added' };
   } catch (error) {
     if (error instanceof Error) {
-      return { error: error.message };
+     return { error: 'Something is wrong!' };
     }
-    return { error: "Something is wrong!" };
+    return { error: 'Something is wrong!' };
   }
 };
 
-// export const getGroupByID = async(groupId:string)=>{ 
-//   try {
-//     const group =await prisma.group.findUnique({
-//       where:{id:groupId},
-//       include:{
-//         questions:{
-//           include:{
-//             choices:true
-//           }
-//         }
-//       }
-//     })
-//     return group
-//   } catch (error) {
-//     if (error instanceof Error) {
-//       throw new Error(error.message);
-//     }
-//     throw new Error("Something going wrong!");
-//   }
-// }
-
-// src/services/groupService.ts
-
 export const getGroupByID = async (groupId: string) => {
   try {
-const group = await prisma.group.findUnique({
-  where: { id: groupId },
-  include: {
-    questions: {
-      orderBy: { createdAt: 'asc' }, // অথবা যেভাবে logical order চাও
+    const group = await prisma.group.findUnique({
+      where: { id: groupId },
       include: {
-        choices: {
-          orderBy: { index: 'asc' },
+        questions: {
+          orderBy: { createdAt: 'asc' },
+          include: {
+            choices: {
+              orderBy: { index: 'asc' },
+            },
+          },
         },
       },
-    },
-  },
-});
+    });
 
     return group;
   } catch (error) {
     if (error instanceof Error) {
       throw new Error(error.message);
     }
-    throw new Error("Something went wrong!");
+    throw new Error('Something went wrong!');
   }
 };
-
-

@@ -58,12 +58,12 @@ export const NewQuestionSchema = z.object({
 export type NewQuestionSchemaType = z.infer<typeof NewQuestionSchema>;
 
 export const NewChoiceSchema = z.object({
-  text: z
-    .string()
-    .min(1, {
-      message: 'Choose Name is required',
-    }),
-  index: z.enum(['1','2','3','4','']).refine((val)=> val.length > 0,{ message: 'Index is required' }),
+  text: z.string().min(1, {
+    message: 'Choose Name is required',
+  }),
+  index: z
+    .enum(['1', '2', '3', '4', ''])
+    .refine(val => val.length > 0, { message: 'Index is required' }),
 });
 
 export type NewChoiceSchemaType = z.infer<typeof NewChoiceSchema>;
@@ -77,7 +77,7 @@ export const EditQuestionSchema = z.object({
     .refine(val => val.length >= 4, {
       message: 'Text Name must be at least 4 characters long.',
     }),
-  correctAnswer:z.number().nullable().optional(),
+  correctAnswer: z.number().nullable().optional(),
   type: z.enum(['MCQ', 'TEXT'], {
     message: 'Question type is required',
   }),
@@ -85,3 +85,30 @@ export const EditQuestionSchema = z.object({
 });
 
 export type EditQuestionSchemaType = z.infer<typeof EditQuestionSchema>;
+
+export const SetupQuizSchema = z.object({
+  testId: z.string().min(1, {
+    message: 'Test selection is required.',
+  }),
+  questionIds: z
+    .array(z.string())
+    .min(1, { message: 'Please select the questions.' })
+    .refine(val => val.length >= 2, {
+      message: 'You must select at least 2 questions.',
+    }),
+});
+
+export type SetupQuizSchemaType = z.infer<typeof SetupQuizSchema>;
+
+export const AssignedTestSchema = z.object({
+  testId: z.string().min(1, {
+    message: 'Test selection is required.',
+  }),
+  userId: z.string().min(1, {
+    message: 'Candidate must be selected..',
+  }),
+  // userId:z.string().optional(),
+  searchBox: z.string().optional(),
+});
+
+export type AssignedTestSchemaSchemaType = z.infer<typeof AssignedTestSchema>;

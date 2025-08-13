@@ -22,7 +22,7 @@ model Account {
   session_state     String?
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
-  
+
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
@@ -64,46 +64,19 @@ model PasswordResetToken {
 }
 
 model Test {
-  id            String            @id @default(uuid())
-  name          String
-  position      String
-  date          DateTime 
-  durationMin   Int
-  userId        String
-  
+  id          String   @id @default(uuid())
+  name        String
+  position    String
+  date        DateTime
+  durationMin Int
+  userId      String
+
   groups        Group[]
   assignedTests AssignedTest[]
   testSessions  UserTestSession[]
   testQuestions TestQuestion[]
-  
-  user            User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 
-}
-
-model AssignedTest {
-  id              String   @id @default(uuid())
-  userId          String
-  testId          String
-  loginToken      String?
-  assignedAt      DateTime @default(now())
-  credentialsSent Boolean  @default(false)
-
-  user            User     @relation(fields: [userId], references: [id])
-  test            Test     @relation(fields: [testId], references: [id])
-}
-
-model UserTestSession {
-  id          String       @id @default(uuid())
-  userId      String
-  testId      String
-  startedAt   DateTime
-  endedAt     DateTime?
-  submitted   Boolean      @default(false)
-  totalScore  Float        @default(0)
-  userAnswers UserAnswer[]
-
-  test        Test         @relation(fields: [testId], references: [id])
-  user        User         @relation(fields: [userId], references: [id])
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
 model Group {
@@ -112,7 +85,7 @@ model Group {
   testId    String
   questions Question[]
 
-  test      Test       @relation(fields: [testId], references: [id])
+  test Test @relation(fields: [testId], references: [id])
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -134,48 +107,72 @@ model Question {
   userAnswers   UserAnswer[]
   testQuestions TestQuestion[]
 
-  group         Group          @relation(fields: [groupId], references: [id])
+  group Group @relation(fields: [groupId], references: [id])
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
 
 model Choice {
-  id         String   @id @default(uuid())
+  id         String @id @default(uuid())
   text       String
   index      Int // Unique index to match against correct answer
   questionId String
 
-  question   Question @relation(fields: [questionId], references: [id],onDelete: Cascade)
+  question Question @relation(fields: [questionId], references: [id], onDelete: Cascade)
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
 
-
 model TestQuestion {
-  id         String   @id @default(uuid())
+  id         String @id @default(uuid())
   testId     String
   questionId String
   order      Int // Optional: order in test
 
-  test       Test     @relation(fields: [testId], references: [id])
-  question   Question @relation(fields: [questionId], references: [id])
+  test     Test     @relation(fields: [testId], references: [id])
+  question Question @relation(fields: [questionId], references: [id])
 
   createdAt DateTime @default(now())
 }
 
+model AssignedTest {
+  id              String   @id @default(uuid())
+  userId          String
+  testId          String
+  loginToken      String?
+  assignedAt      DateTime @default(now())
+  credentialsSent Boolean  @default(false)
+
+  user User @relation(fields: [userId], references: [id])
+  test Test @relation(fields: [testId], references: [id])
+}
+
+model UserTestSession {
+  id          String       @id @default(uuid())
+  userId      String
+  testId      String
+  startedAt   DateTime
+  endedAt     DateTime?
+  submitted   Boolean      @default(false)
+  totalScore  Float        @default(0)
+  userAnswers UserAnswer[]
+
+  test Test @relation(fields: [testId], references: [id])
+  user User @relation(fields: [userId], references: [id])
+}
 
 model UserAnswer {
-  id            String          @id @default(uuid())
+  id            String @id @default(uuid())
   testSessionId String
   questionId    String
   response      String // For MCQ: choice index as string; for TEXT: answer
   autoScore     Float? // For MCQ
   givenScore    Float? // For TEXT (manual evaluation)
 
-  testSession   UserTestSession @relation(fields: [testSessionId], references: [id])
-  question      Question        @relation(fields: [questionId], references: [id])
+  testSession UserTestSession @relation(fields: [testSessionId], references: [id])
+  question    Question        @relation(fields: [questionId], references: [id])
 
   createdAt DateTime @default(now())
 }

@@ -8,11 +8,10 @@ const domain = process.env.NEXT_PUBLIC_APP_URL;
 
 export const sendPasswordResetEmail = async (email: string, token: string) => {
   const resetLink = `${domain}/auth/new-password?token=${token}`;
-  console.log({ resetLink });
 
   try {
     const { data, error } = await resend.emails.send({
-     from: 'quiz-exam@ronydas.dev',
+      from: 'quiz-exam@ronydas.dev',
       to: email,
       subject: 'Reset your password',
       react: EmailTemplate({
@@ -23,8 +22,8 @@ export const sendPasswordResetEmail = async (email: string, token: string) => {
       }),
     });
 
-    console.log("sendPasswordResetEmail data ",data );
-    console.log("sendPasswordResetEmail error ",error );
+    console.log('sendPasswordResetEmail data ', data);
+    console.log('sendPasswordResetEmail error ', error);
 
     if (error) {
       return { error: error };
@@ -39,7 +38,6 @@ export const sendPasswordResetEmail = async (email: string, token: string) => {
 export const sendVerificationEmail = async (email: string, token: string) => {
   try {
     const confirmLink = `${domain}/auth/new-verification?token=${token}`;
-    console.log({ confirmLink });
 
     const { data, error } = await resend.emails.send({
       from: 'quiz-exam@ronydas.dev',
@@ -54,9 +52,35 @@ export const sendVerificationEmail = async (email: string, token: string) => {
       }),
     });
 
-    console.log("sendVerificationEmail data ",data );
-    console.log("sendVerificationEmail error ",error );
-    
+    if (error) {
+      return { error: error };
+    }
+
+    return { success: data };
+  } catch (error) {
+    return { error: error };
+  }
+};
+
+export const sendQuizExamEmail = async (email: string, token: string) => {
+  try {
+    const confirmLink = `${domain}/my-test?token=${token}`;
+
+    const { data, error } = await resend.emails.send({
+      from: 'quiz-exam@ronydas.dev',
+      to: email,
+      subject: 'Quiz Exam Invitation',
+      react: EmailTemplate({
+        title: 'Quiz Exam Invitation',
+        message:
+          'You have been invited to take a quiz exam. Please confirm your email address to proceed.',
+        action_url: confirmLink,
+        action_text: 'Start Quiz Exam',
+      }),
+    });
+
+    console.log('sendQuizExamEmail data ', data);
+    console.log('sendQuizExamEmail error ', error);
 
     if (error) {
       return { error: error };

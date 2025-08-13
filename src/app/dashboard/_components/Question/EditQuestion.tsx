@@ -28,8 +28,9 @@ import {
 } from '@/schemas/dashboard';
 import { editQuestion } from '@/actions/dashboard/question';
 
-import { QuestionType } from '@/types/question';
+
 import { Edit } from 'lucide-react';
+import { QuestionType } from '@/types/dashboardTypes';
 
 interface EditQuestionProps {
   className?: string;
@@ -41,7 +42,7 @@ const EditQuestion: FC<EditQuestionProps> = ({ question }) => {
   const [success, setSuccess] = useState('');
   const [isPending, startTransition] = useTransition();
 
-  // console.log(question);
+
 
   const form = useForm<EditQuestionSchemaType>({
     resolver: zodResolver(EditQuestionSchema),
@@ -54,7 +55,7 @@ const EditQuestion: FC<EditQuestionProps> = ({ question }) => {
   });
 
   const onSubmit = (value: EditQuestionSchemaType) => {
-    console.log(value);
+ 
     // handle submit logic
     startTransition(() => {
       editQuestion(value, question.id)
