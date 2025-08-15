@@ -112,7 +112,7 @@ async function CandidateAnswerReview({ params }: CandidateAnswerReviewType) {
           <CompleteReview
             userTestSessionId={id}
             totalScore={userAnswers.reduce(
-              (sum, item) => (item.autoScore ? item.autoScore : 0 + sum),
+              (sum, item) => (item.autoScore ? item.autoScore + sum :  sum+0),
               0,
             )}
           />
