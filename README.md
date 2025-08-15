@@ -1,6 +1,3 @@
-> 🚧 **Work in Progress:** This application is still being developed. I’m actively working on it and regularly adding new features and improvements.
-
-
 # Quiz Exam – A Quiz Generation Platform for Recruiters
 
 ## Overview
