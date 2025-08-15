@@ -1,6 +1,5 @@
 // import { cache } from 'react'
 import { prisma } from '@/lib/prisma'
-import { unstable_cache } from 'next/cache';
 
 // lib/cache.ts
 // const cacheStore = new Map<string, { data: any, expiresAt: number }>()
@@ -34,7 +33,7 @@ import { unstable_cache } from 'next/cache';
 
 
 
-export const getTestByUserID =unstable_cache(async (userId: string) => {
+export const getTestByUserID =async (userId: string) => {
   return await prisma.test.findMany({
     where: { userId },
     include: {
@@ -63,10 +62,10 @@ export const getTestByUserID =unstable_cache(async (userId: string) => {
     },
   })
 }
-) 
 
 
-export const getAssignTestByToken = unstable_cache(async(token:string)=>{ 
+
+export const getAssignTestByToken = async(token:string)=>{ 
   return await prisma.assignedTest.findFirst({
     where: { loginToken:token },
     include:{
@@ -89,9 +88,9 @@ export const getAssignTestByToken = unstable_cache(async(token:string)=>{
     }
   })
 }
-)
 
-export const getUserTestSessionByUserId =unstable_cache( async  (userId:string) =>{
+
+export const getUserTestSessionByUserId =async  (userId:string) =>{
   try {
     return await prisma.userTestSession.findFirst({
       where:{userId},
@@ -110,9 +109,9 @@ export const getUserTestSessionByUserId =unstable_cache( async  (userId:string) 
     return null
     
   }
-}) 
+}
 
-export const getTestQuestionByTestId =unstable_cache(async  (testId:string) =>{
+export const getTestQuestionByTestId =async  (testId:string) =>{
   try {
     return await prisma.testQuestion.findMany({
       where:{testId},
@@ -126,6 +125,6 @@ export const getTestQuestionByTestId =unstable_cache(async  (testId:string) =>{
     return null
     
   }
-})
+}
 
 
