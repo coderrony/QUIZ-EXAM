@@ -22,7 +22,7 @@ type CandidateAnswerReviewType = {
 
 async function CandidateAnswerReview({ params }: CandidateAnswerReviewType) {
   const { userId } = await params;
-  const getExam = await getUserTestSessionByUserId(userId);
+  const getExam = await getUserTestSessionByUserId(userId); // fetch user test session by userId
 
   if (!getExam || getExam.userAnswers.length === 0) {
     return (
