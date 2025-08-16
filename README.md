@@ -56,10 +56,13 @@ You can explore the live project here:
 
 🔗 [https://quiz-exam-iota.vercel.app](https://quiz-exam-iota.vercel.app)
 
+## 🎥 Application Overview Video
+
+[![Watch the video](https://img.youtube.com/vi/uwDjoYNINoY/0.jpg)](https://www.youtube.com/watch?v=uwDjoYNINoY)
+
 ## 🗂️ Application Architecture
 
 Here’s a visual diagram of the application's structure:
 
 ![Quiz Exam Architecture](https://res.cloudinary.com/drtqzfefz/image/upload/v1754046775/quiz_exam_diagram___Mermaid_Chart_jwqt8u.png)
-
 
